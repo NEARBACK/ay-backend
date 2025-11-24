@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import Field, RootModel
 
 from .base import BaseSchema
@@ -16,7 +18,7 @@ class Post(BaseSchema):
         title="Recommended donation in nanoton",
         examples=[100_000_000],
     )
-    created_at: str = Field(
+    created_at: datetime = Field(
         title="Creation time",
         examples=["2025-11-24T12:00:00Z"],
     )

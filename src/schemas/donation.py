@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import Field, RootModel
 
 from .base import BaseSchema
@@ -30,11 +32,11 @@ class DonationSchema(BaseSchema):
         title="Comment",
         examples=["donation:123"],
     )
-    created_at: str = Field(
+    created_at: datetime = Field(
         title="Creation time",
         examples=["2025-11-24T12:00:00Z"],
     )
-    updated_at: str = Field(
+    updated_at: datetime = Field(
         title="Update time",
         examples=["2025-11-24T12:05:00Z"],
     )

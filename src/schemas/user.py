@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import Field, RootModel
 
 from .base import BaseSchema
@@ -15,7 +17,7 @@ class User(BaseSchema):
         title="Display name",
         examples=["Nearback"],
     )
-    created_at: str = Field(
+    created_at: datetime = Field(
         title="Creation time (ISO string or DB string)",
         examples=["2025-11-24T12:00:00Z"],
     )

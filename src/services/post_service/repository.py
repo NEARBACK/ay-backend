@@ -2,6 +2,7 @@ from collections.abc import Sequence
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
 
 from db.models.post import Posts
 from db.repository.base import BaseRepository
@@ -42,7 +43,13 @@ class PostRepository(BaseRepository):
         """
         Лента всех постов (по дате создания, DESC).
         """
-        result = await self.session.scalars(select(Posts).order_by(Posts.created_at.desc()).limit(limit).offset(offset))
+        result = await self.session.scalars(
+            select(Posts)
+            .options(selectinload(Posts.author))  # 👈 подгружаем автора для всех постов
+            .order_by(Posts.created_at.desc())
+            .limit(limit)
+            .offset(offset),
+        )
         return result.all()
 
     async def list_by_author(
