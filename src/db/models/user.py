@@ -1,12 +1,3 @@
-"""
-CREATE TABLE users (
-    id                  UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    wallet_address      VARCHAR(128) UNIQUE NOT NULL,
-    display_name        VARCHAR(64),           -- опционально, можно null
-    created_at          TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
-"""
-
 from sqlalchemy import BigInteger, String
 from sqlalchemy.orm import Mapped, mapped_column
 
