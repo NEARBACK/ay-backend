@@ -37,7 +37,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(router=api_router, prefix="/api", tags=["API"])
+app.include_router(router=api_router, prefix="/api")
 
 app.add_route("/metrics", handle_metrics)
 

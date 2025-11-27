@@ -12,6 +12,8 @@ from services.donation_service.repository import DonationRepository
 from services.donation_service.service import DonationService
 from services.dummy_service.repository import DummyRepository
 from services.dummy_service.service import DummyService
+from services.media_service.repository import MediaRepository
+from services.media_service.service import MediaService
 from services.post_service.repository import PostRepository
 from services.post_service.service import PostService
 from services.user_service.repository import UserRepository
@@ -77,3 +79,10 @@ async def get_current_user(
     # лениво создаём юзера, если не найден
     created = await user_service.get_or_create_user(UserCreate(wallet_address=wallet_address, display_name=None))
     return created
+
+
+async def get_media_service(
+    session: AsyncSession = Depends(get_session),
+) -> MediaService:
+    repo = MediaRepository(session)
+    return MediaService(repo)

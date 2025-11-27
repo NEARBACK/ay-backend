@@ -21,3 +21,6 @@ class Posts(Base):
     donations: Mapped[list["Donations"]] = relationship(  # type: ignore # noqa F821
         "Donations", back_populates="post", cascade="all, delete-orphan"
     )
+    media: Mapped[list["Media"]] = relationship(  # type: ignore # noqa F821
+        "Media", back_populates="post", cascade="all, delete-orphan"
+    )
